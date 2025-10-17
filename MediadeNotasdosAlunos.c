@@ -1,57 +1,74 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 
-struct Estudante{
+struct Estudante {
     char nome[50];
     int matricula;
-    float nota1;
-    float nota2;
-    float media;
+    float notaMedia;
 };
 
-int main(){
- 
- struct Estudante estudante;
- char continuar;
- 
-do{
-   printf("\n\n-----Bem Vindos ao Sistema de Gerenciamento de Alunos-----\n\n");
-    
-   printf("Digite o nome do estudante:");
-   scanf("%49s",estudante.nome); 
-   
-   
-   printf("Digite a matricula do aluno:");
-   scanf("%d",&estudante.matricula);
-   printf("Digite a primeira nota:");
-   scanf("%f", &estudante.nota1);
-   printf("Digite a segunda nota:");
-   scanf("%f", &estudante.nota2);
-  
-   estudante.media = (estudante.nota1 + estudante.nota2) / 2.0;
-   
-   
-   printf("\n\nDados do Estudante:\n\n");
-   printf("\nNome do Estudante:%s",estudante.nome);
-   printf("\nMatricula do Estudante:%d ",estudante.matricula);
-   printf("\nNota 1 do Estudante:%.2f ",estudante.nota1);
-   printf("\nNota 2 do Estudante:%.2f ",estudante.nota2);
-   printf("\nMedia do Estudante:%.2f ",estudante.media);
+int main() {
+    struct Estudante estudante;
+    char continuar;
+    float *notas;
+    float media;
+    int n;
 
-   
-   if(estudante.media>=6){
-    printf("\n\nEstudante Aprovado\n\n");
-   }
-   else{
-    printf("\n\nEstudante Reprovado\n\n");
-   }
-   
-    printf("deseja continuar?(s/n)");
-    scanf(" %c",&continuar);
+    do {
+        printf("\n\n----- Bem-Vindo ao Sistema de Gerenciamento de Alunos -----\n\n");
 
+        printf("Digite o nome do estudante: ");
+        scanf("%49s", estudante.nome);
 
-} while(continuar == 's'|| continuar == 'S'); 
-printf("\nSistema de Gerenciamento de Alunos Encerrado.\n Obrigado por usar!");
+        printf("Digite a matricula do aluno: ");
+        scanf("%d", &estudante.matricula);
+
+        printf("Digite o numero de notas que deseja inserir: ");
+        scanf("%d", &n);
+
+        if (n <= 0) {
+            printf("Numero invalido!\n");
+            return 0;
+        }
+
+       
+        notas = (float*) malloc(n * sizeof(float));
+        if (notas == NULL) {
+            printf("Erro ao alocar memoria!\n");
+            return 1;
+        }
+
+        media = 0;  
+
+        printf("Serão inseridas %d notas:\n", n);
+        for (int i = 0; i < n; i++) {
+            printf("Digite a %d nota: ", i + 1);
+            scanf("%f", &notas[i]);
+            media += notas[i];
+        }
+
+        estudante.notaMedia = media / n;
+
+        printf("\n--- Resultado do Aluno ---\n");
+        printf("Nome: %s\n", estudante.nome);
+        printf("Matrícula: %d\n", estudante.matricula);
+        printf("Média: %.2f\n", estudante.notaMedia);
+
+        if (estudante.notaMedia >= 6) {
+            printf("Estudante aprovado!\n");
+        } else {
+            printf("Estudante reprovado!\n");
+        }
+
+        free(notas); 
+
+        printf("\nDeseja cadastrar outro estudante? (s/n): ");
+        scanf(" %c", &continuar);
+
+    } while (continuar == 's' || continuar == 'S');
+
+    printf("\nSistema de Gerenciamento de Alunos Encerrado.\nObrigado por usar!\n");
 
     return 0;
 }

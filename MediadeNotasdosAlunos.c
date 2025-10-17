@@ -15,15 +15,10 @@ int main(){
  char continuar;
  
 do{
-   printf("\n\n-----Bem vindos ao Sistema de Gerenciamento de Alunos-----\n\n");
+   printf("\n\n-----Bem Vindos ao Sistema de Gerenciamento de Alunos-----\n\n");
     
    printf("Digite o nome do estudante:");
-   fgets(estudante.nome, sizeof(estudante.nome), stdin); 
-    /* remover newline deixado por fgets, se houver */
-    size_t len = strlen(estudante.nome);
-    if (len > 0 && estudante.nome[len-1] == '\n') {
-            estudante.nome[len-1] = '\0';
-    }
+   scanf("%49s",estudante.nome); 
    
    
    printf("Digite a matricula do aluno:");
@@ -37,8 +32,8 @@ do{
    
    
    printf("\n\nDados do Estudante:\n\n");
-   printf("Nome do Estudante:%s",estudante.nome);
-   printf("Matricula do Estudante:%d ",estudante.matricula);
+   printf("\nNome do Estudante:%s",estudante.nome);
+   printf("\nMatricula do Estudante:%d ",estudante.matricula);
    printf("\nNota 1 do Estudante:%.2f ",estudante.nota1);
    printf("\nNota 2 do Estudante:%.2f ",estudante.nota2);
    printf("\nMedia do Estudante:%.2f ",estudante.media);
@@ -54,8 +49,7 @@ do{
     printf("deseja continuar?(s/n)");
     scanf(" %c",&continuar);
 
-    getchar();
-  
+
 } while(continuar == 's'|| continuar == 'S'); 
 printf("\nSistema de Gerenciamento de Alunos Encerrado.\n Obrigado por usar!");
 

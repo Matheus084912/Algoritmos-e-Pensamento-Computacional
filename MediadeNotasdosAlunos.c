@@ -50,7 +50,7 @@ int main() {
 
         estudante.notaMedia = media / n;
 
-        printf("\n--- Resultado do Aluno ---\n");
+        printf("\n Resultado do Estudante \n");
         printf("Nome: %s\n", estudante.nome);
         printf("Matrícula: %d\n", estudante.matricula);
         printf("Média: %.2f\n", estudante.notaMedia);
@@ -72,3 +72,4 @@ int main() {
 
     return 0;
 }
+

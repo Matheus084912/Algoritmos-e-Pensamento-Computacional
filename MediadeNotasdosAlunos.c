@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 
 struct Estudante {
     char nome[50];
@@ -72,4 +71,5 @@ int main() {
 
     return 0;
 }
+
 
